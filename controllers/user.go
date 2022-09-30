@@ -3,11 +3,25 @@
 //handle it
 package controllers
 
-import "net/http"
+import (
+	"net/http"
+	"regexp"
+)
 
-type userController struct {}
+type userController struct {
+	userIDPattern *regexp.Regexp
+}
 
 //below we'll bind a function to a method (specify the type we'll bind to)
 func (uc userController) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello from the User Controller!"))
+	w.Write([]byte("GM From the Evacuation Zone!"))
+}
+
+//constructor
+func newUserController() *userController {
+	return &userController{
+		//looking for "slash users slash" followed by number for extending 
+		//user list in future
+		userIDPattern: regexp.MustCompile(`^/users/(\d+)/?`),
+	}
 }
