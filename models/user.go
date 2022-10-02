@@ -30,7 +30,7 @@ func AddUser(u User) (User, error) {
 	return u, nil
 }
 
-func getUserById(id int) (User, error) {
+func GetUserById(id int) (User, error) {
 	//don't need index so use write-only variable (here we have index, user)
 	for _, u := range users {
 		if u.ID == id {
